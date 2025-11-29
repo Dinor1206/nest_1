@@ -1,6 +1,6 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Delete, HttpCode, Param, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto, verifyDto } from './dto/create_user.dto';
+import { CreateUserDto, LoginDto, verifyDto } from './dto/create_user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -18,5 +18,17 @@ export class AuthController {
   verify(@Body() verifydto:verifyDto){
     return this.authService.verify(verifydto)
 
+  }
+  
+  @HttpCode(200)
+  @Post("login")
+  login(@Body() LoginDto:LoginDto){
+    return this.authService.login(LoginDto)
+
+  }
+  @HttpCode(200)
+  @Delete("delete/:id")
+  deleteUser(@Param("id") id:string){
+    return this.authService.deleteUser(id)
   }
 }
