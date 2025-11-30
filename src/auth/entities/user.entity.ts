@@ -11,7 +11,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  username: string 
+  username: string;
 
   @Column()
   email: string;
@@ -19,21 +19,21 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default:null})
+  @Column({ default: null })
   otp: number;
 
-//   @Column({ default: UserRole.USER })
-//   role: UserRole;
+  //   @Column({ default: UserRole.USER })
+  //   role: UserRole;
 
-  @Column({ default: false})
+  @Column({ default: false })
   isVerify: boolean;
 
-  @Column({ type: "bigint", nullable: true, default:0 })
+  @Column({ type: "bigint", nullable: true, default: 0 })
   otpTime: number;
 
-  @UpdateDateColumn({default:Date})
+  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 
-  @CreateDateColumn({default:Date})
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
 }
